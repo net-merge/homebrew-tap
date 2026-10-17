@@ -1,7 +1,6 @@
 class NetMerge < Formula
   desc "Use all your network adapters at once (Wi-Fi, Ethernet, phone tethers)"
   homepage "https://github.com/rohit267/net-merge"
-  version "0.2.0"
   license "MIT"
 
   livecheck do
@@ -9,19 +8,26 @@ class NetMerge < Formula
     strategy :github_latest
   end
 
+  # One universal macOS build serves both Apple Silicon and Intel.
   on_macos do
-    url "https://github.com/rohit267/net-merge/releases/download/v0.2.0/net-merge-0.2.0-macos-universal.tar.gz"
-    sha256 "26c059b8b0f90fd7ac8ea378c922d57685520df69586bab27957dfa99f19f29b"
+    on_arm do
+      url "https://github.com/rohit267/net-merge/releases/download/v0.2.0/net-merge-0.2.0-macos-universal.tar.gz"
+      sha256 "26c059b8b0f90fd7ac8ea378c922d57685520df69586bab27957dfa99f19f29b"
+    end
+    on_intel do
+      url "https://github.com/rohit267/net-merge/releases/download/v0.2.0/net-merge-0.2.0-macos-universal.tar.gz"
+      sha256 "26c059b8b0f90fd7ac8ea378c922d57685520df69586bab27957dfa99f19f29b"
+    end
   end
 
   on_linux do
-    on_intel do
-      url "https://github.com/rohit267/net-merge/releases/download/v0.2.0/net-merge-0.2.0-linux-x86_64.tar.gz"
-      sha256 "8bf95cce52eff0fab54d17ceb988f1712f0cb1055359ac81153330c201d801c0"
-    end
     on_arm do
       url "https://github.com/rohit267/net-merge/releases/download/v0.2.0/net-merge-0.2.0-linux-aarch64.tar.gz"
       sha256 "adb21f403cc8304eaec37a8b7a38051c54d3177a870ab3cb0f57fd6119dde7a4"
+    end
+    on_intel do
+      url "https://github.com/rohit267/net-merge/releases/download/v0.2.0/net-merge-0.2.0-linux-x86_64.tar.gz"
+      sha256 "8bf95cce52eff0fab54d17ceb988f1712f0cb1055359ac81153330c201d801c0"
     end
   end
 

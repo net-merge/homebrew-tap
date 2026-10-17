@@ -13,6 +13,7 @@ jobs:
         os: [macos-latest, ubuntu-latest]
     runs-on: ${{ matrix.os }}
     steps:
+      - uses: Homebrew/actions/setup-homebrew@main
       - name: Install net-merge from the tap
         run: |
           brew tap rohit267/tap

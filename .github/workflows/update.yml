@@ -22,7 +22,7 @@ jobs:
       - name: Commit if it changed
         run: |
           if git diff --quiet -- Formula; then echo "no change"; exit 0; fi
-          v=$(sed -n 's/^  version "\(.*\)"/\1/p' Formula/net-merge.rb)
+          v=$(sed -n 's#.*/download/v\([0-9.]*\)/net-merge-.*#\1#p' Formula/net-merge.rb | head -1)
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add Formula
