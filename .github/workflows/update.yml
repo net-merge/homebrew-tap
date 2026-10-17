@@ -1,0 +1,30 @@
+name: update
+# Follows the latest net-merge release: rewrites the formula when there is a new version.
+# GitHub pauses scheduled workflows after 60 days without repository activity; a manual run
+# (Actions > update > Run workflow) or any commit starts it again.
+on:
+  schedule:
+    - cron: '17 */3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Rewrite the formula from the latest release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: scripts/update.sh
+      - name: Commit if it changed
+        run: |
+          if git diff --quiet -- Formula; then echo "no change"; exit 0; fi
+          v=$(sed -n 's/^  version "\(.*\)"/\1/p' Formula/net-merge.rb)
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Formula
+          git commit -m "net-merge $v"
+          git push

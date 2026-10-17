@@ -1,0 +1,23 @@
+name: tests
+# Installs the formula from this tap on macOS and Linux and runs its test and the audit.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  install:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Install net-merge from the tap
+        run: |
+          brew tap rohit267/tap
+          brew install rohit267/tap/net-merge
+          brew test rohit267/tap/net-merge
+          net-merge version
+      - name: Audit the formula
+        run: brew audit --strict --online rohit267/tap/net-merge
