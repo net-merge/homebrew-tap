@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  actions: write # to start the tests: a push made with the workflow token does not start them
 
 jobs:
   update:
@@ -19,7 +20,9 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: scripts/update.sh
-      - name: Commit if it changed
+      - name: Commit if it changed, then test it
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           if git diff --quiet -- Formula; then echo "no change"; exit 0; fi
           v=$(sed -n 's#.*/download/v\([0-9.]*\)/net-merge-.*#\1#p' Formula/net-merge.rb | head -1)
@@ -28,3 +31,4 @@ jobs:
           git add Formula
           git commit -m "net-merge $v"
           git push
+          gh workflow run tests.yml
