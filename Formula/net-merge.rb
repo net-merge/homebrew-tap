@@ -11,23 +11,23 @@ class NetMerge < Formula
   # One universal macOS build serves both Apple Silicon and Intel.
   on_macos do
     on_arm do
-      url "https://github.com/rohit267/net-merge/releases/download/v0.3.1/net-merge-0.3.1-macos-universal.tar.gz"
-      sha256 "f3fdae558fa6eb93b787d76575376f5e12c73c59a4de28685e59e30888a4eb1c"
+      url "https://github.com/rohit267/net-merge/releases/download/v0.3.2/net-merge-0.3.2-macos-universal.tar.gz"
+      sha256 "d889185bc61782794bb4fa694011ef591b48b2b3d9b5d151ae13ee607a9f4ba0"
     end
     on_intel do
-      url "https://github.com/rohit267/net-merge/releases/download/v0.3.1/net-merge-0.3.1-macos-universal.tar.gz"
-      sha256 "f3fdae558fa6eb93b787d76575376f5e12c73c59a4de28685e59e30888a4eb1c"
+      url "https://github.com/rohit267/net-merge/releases/download/v0.3.2/net-merge-0.3.2-macos-universal.tar.gz"
+      sha256 "d889185bc61782794bb4fa694011ef591b48b2b3d9b5d151ae13ee607a9f4ba0"
     end
   end
 
   on_linux do
     on_arm do
-      url "https://github.com/rohit267/net-merge/releases/download/v0.3.1/net-merge-0.3.1-linux-aarch64.tar.gz"
-      sha256 "c47f63db6eee2810774884418f53d3a4bafde3ca2c06e978849c413bd0fab937"
+      url "https://github.com/rohit267/net-merge/releases/download/v0.3.2/net-merge-0.3.2-linux-aarch64.tar.gz"
+      sha256 "45330292a5084b7909049b464837044a7d78bda45e542265110a349eb8bb0e48"
     end
     on_intel do
-      url "https://github.com/rohit267/net-merge/releases/download/v0.3.1/net-merge-0.3.1-linux-x86_64.tar.gz"
-      sha256 "2c1550bc1b7ce350e99af7e06fefc93c22a73b33581be385404efd6390b7bc5b"
+      url "https://github.com/rohit267/net-merge/releases/download/v0.3.2/net-merge-0.3.2-linux-x86_64.tar.gz"
+      sha256 "7eb1c41750830234e151fd07bd729b7b103492d81477369733a64c7000a99691"
     end
   end
 
